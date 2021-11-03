@@ -1,0 +1,22 @@
+storage: ./storage
+auth:
+  htpasswd:
+    file: ./htpasswd
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+  # Add any private repos that you might also want to get packages from
+packages:
+  "@*/*":
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+  "**":
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+web:
+  enable: true
+  title: Dev Registry
+logs:
+  - { type: stdout, format: pretty, level: http }
